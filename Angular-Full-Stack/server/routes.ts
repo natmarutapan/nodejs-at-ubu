@@ -1,27 +1,19 @@
 import * as express from 'express';
 
-import DogCtrl from './controllers/dog';
 import CatCtrl from './controllers/cat';
+import DogCtrl from './controllers/dog';
 import UserCtrl from './controllers/user';
-import Dog from './models/dog';
 import Cat from './models/cat';
+import Dog from './models/dog';
 import User from './models/user';
 
 export default function setRoutes(app) {
 
   const router = express.Router();
 
-  const dogCtrl = new DogCtrl();
   const catCtrl = new CatCtrl();
+  const dogCtrl = new DogCtrl();
   const userCtrl = new UserCtrl();
-
-  // Dogs
-  router.route('/dogs').get(dogCtrl.getAll);
-  router.route('/dogs/count').get(dogCtrl.count);
-  router.route('/dog').post(dogCtrl.insert);
-  router.route('/dog/:id').get(dogCtrl.get);
-  router.route('/dog/:id').put(dogCtrl.update);
-  router.route('/dog/:id').delete(dogCtrl.delete);
 
   // Cats
   router.route('/cats').get(catCtrl.getAll);
@@ -30,6 +22,14 @@ export default function setRoutes(app) {
   router.route('/cat/:id').get(catCtrl.get);
   router.route('/cat/:id').put(catCtrl.update);
   router.route('/cat/:id').delete(catCtrl.delete);
+
+  // Dogs
+  router.route('/dogs').get(dogCtrl.getAll);
+  router.route('/dogs/count').get(dogCtrl.count);
+  router.route('/dog').post(dogCtrl.insert);
+  router.route('/dog/:id').get(dogCtrl.get);
+  router.route('/dog/:id').put(dogCtrl.update);
+  router.route('/dog/:id').delete(dogCtrl.delete);
 
   // Users
   router.route('/login').post(userCtrl.login);
